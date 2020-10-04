@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>E Book Page</title>
+        <style>
+            body{
+                background-color: #E6E6FA;
+            }
+
+			#uptable
+        {
+            width: 300px;
+            margin: 0 auto;
+            text-align: justify-all;
+        }
+             h1
+        {
+            color: #800080;
+            font-family: cursive;
+            text-align: center;
+        }
+
+            table{
+                font-size: 15px;
+            }
+
+            #discounttable
+        {
+            border-style: solid;
+            float: right;
+        }
+		#result
+        {
+            text-align: center;
+        }
+        </style>
+
+            <script>
+            function calculate(){
+                var totalbooks=document.getElementById("bookval").value;
+                var sum=0;
+                var choice=document.getElementsByName("bookCategory");
+                
+                //var choice2=document.getElementById("category").value;
+                
+              
+                for(var i = 0; i < choice.length; i++) { 
+                if(choice[i].checked){
+                    var service=choice[i].value;
+                    }
+                }
+                if(service=="Science"){
+                    
+					var perbookcost = 400;
+					if(totalbooks <=250){
+						sum = (totalbooks * perbookcost)
+						sum -= Math.ceil((sum*5)/100);
+					}
+					if(totalbooks >250){
+						sum = (totalbooks * perbookcost)
+						sum -= Math.ceil((sum*7)/100);
+					}
+                }
+				if(service=="Comics"){
+                    
+					var perbookcost = 300;
+					if(totalbooks <=250){
+						sum = (totalbooks * perbookcost)
+						sum -= Math.ceil((sum*3)/100);
+					}
+					if(totalbooks >250){
+						sum = (totalbooks * perbookcost)
+						sum -= Math.ceil((sum*4)/100);
+					}
+                }
+                
+                   var output="Total Price is: "+sum;
+
+                document.getElementById("result").innerHTML=output;
+			return false;
+				
+			}
+			function updateTextInput(val){
+				document.getElementById('textInput').value=val;
+			}
+			
+        </script>
+    </head>  
+  <body>        
+<form onsubmit="return calculate();">
+       <h1  >E-BOOK GRAND SALE</h1>
+		<table id="uptable">
+            
+            
+            <tr>
+                <td><label>Customer Name</label></td>
+                <td><input type="text" name="customerName" id="customerName" pattern="^[A-Za-z ]{1,32}$" placeholder="Enter the Customer Name" required></td>
+            </tr>
+
+            <tr>
+
+                <td><label>Email-ID</label></td>
+
+                <td><input type="email" name="email" id="email" required></td>
+
+            </tr>
+			
+			<tr>
+
+                <td><label>Mobile</label></td>
+
+                <td><input type="text" name="customerMobileNumber" id="customerMobileNumber" pattern="^[9|8][0-9]{9}$" placeholder="Enter the Mobile Number" required></td>
+
+            </tr>
+			
+			<tr>
+
+				<td>
+
+					Book Category
+
+				</td>
+
+				<td>
+
+					<input type="radio" name="bookCategory" id="bookCategoryScience" value="Science" required> Science
+
+					<input type="radio" name="bookCategory" id="bookCategoryComics" value="Comics" required> Comics
+
+				</td>
+
+			</tr>
+		
+			<tr>
+
+				<td>
+
+					Type
+
+				</td>
+
+				<td>
+
+					<input list="book" name="bookType" id="bookType">
+
+						<datalist id="book">
+
+							<option>Weekly</option>
+
+							<option>Monthly</option>
+
+							<option>Fortnightly</option>
+
+						</datalist>
+
+				</td>
+
+			</tr>
+		
+			<tr>
+		
+				<td>No of Books Required</td>
+				<td> 
+					<input type="range" id="bookval" name="bookCount" min="1" max="500" onchange="updateTextInput(this.value);" required>
+					<input type="text" id="textInput">
+				</td>
+			</tr>
+
+            <tr>
+
+                <td><input type="submit" name="submit" value="Calculate Total Price"></td>
+
+                <td><input type="reset" name="reset" value="Clear"></td>
+
+            </tr>  
+
+            </table>
+</form>
+
+            <div id="result"></div>
+            
+        <table border="2" id ="discounttable">
+            <caption>Discount Rate Chart</caption>
+            <tr> 
+                <th>Book Type</th>
+                <th>Per Book Cost</th>
+                <th>Discount Rate(in percentage)</th>
+            </tr>
+            <tr>
+                <td>Science</td>
+                <td>400</td>
+                <td>5% if total book count &lt;=250</td>
+            </tr>
+			<tr>
+                <td>Science</td>
+                <td>400</td>
+                <td>7% if total book count &gt;250</td>
+            </tr>
+			<tr>
+                <td>Comics</td>
+                <td>300</td>
+                <td>3% if total book count &lt;=250</td>
+            </tr>
+			<tr>
+                <td>Comics</td>
+                <td>300</td>
+                <td>4% if total book count &gt;250</td>
+            </tr>
+    
+        </table>
+    </body>
+</html>
